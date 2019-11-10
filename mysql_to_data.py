@@ -7,7 +7,7 @@ from elasticsearch_dsl.connections import connections
 # es = connections.create_connection(DangDangType._doc_type.using)
 es = connections.create_connection(KCType._doc_type.using)
 
-db = sqlalchemy.create_engine("mysql+pymysql://root:7890@39.107.253.135:33060/kechuangdata")
+db = sqlalchemy.create_engine("mysql+pymysql://root:7890@localhost:3306/kechuangdata")
 
 base = declarative_base(db)
 
