@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        span{
+            color: red;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <input type="text" id="input_id">
+    <button id="submit" onclick="show_list()">搜索</button>
+</div>
+<div id="showitem">
+</div>
+<div id="showlist">
+
+</div>
+<script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+<script>
+
+    $("#input_id").bind("input propertychange",function () {
+        console.log("已经输入了"+$("#input_id").val().length+"个字。。。");
+        $.ajax(
+            {
+                url:'/search/?s='+$("#input_id").val(),
+                dataType:'json',
+                type:'GET',
+                cache:false,
+                async:true,
+                success:function (data) {
+                    console.log(data.res)
+                    var d = data.res
+                    $('#showitem').empty()
+                    for(var temp in d){
+                        $('#showitem').append(
+                            "<p>"+d[temp].art_title+"</p>"
+                        )
+                    }
+
+                },
+                error:function (err) {
+                    console.log(err)
+                }
+            }
+        )
+    });
+
+    function show_list() {
+        $('#showitem').empty();
+        $('#showlist').empty();
+        $.ajax(
+            {
+                url:'/search_list/?q=' + $('#input_id').val(),
+                type:'GET',
+                dataType:'json',
+                cache:false,
+                async:true,
+                success:function (data) {
+                    console.log(data.res);
+                    var d = data.res;
+                    for (var i in d){
+                        var temp = '';
+                        var rd = d[i].art_description;
+                        for(var j in rd){
+                            temp = rd[j] + temp;
+                        }
+                       $('#showlist').append(
+                        '<p>'+ d[i].art_title + '</p>'+
+                           '<p>'+ d[i].art_company_name + '<span>'+d[i].create_date+'</span>'+ '</p>'
+                           +'<p>'+ temp + '</p>' + '<hr>'
+                    )
+                    }
+                },
+                error:function (err) {
+                    console.log(err)
+                }
+            }
+        )
+    }
+
+</script>
+</body>
+</html>
