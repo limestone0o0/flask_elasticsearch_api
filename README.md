@@ -26,7 +26,9 @@ pip install -r requirements.txt
 
 #### 相关接口
 1.博客api 'http://127.0.0.1:5000/api/blogslist/\<string:keyword\>/\<int:page\>/\<int:limit\>'
+
 2.商品api 'http://127.0.0.1:5000/api/bookslist/\<string:keyword\>/\<int:page\>/\<int:limit\>'
+
 3.搜索建议 'http://127.0.0.1:5000/api/suggest/\<string:types\>/\<string:keyword\>/\<int:limit\>'
 
 #### api参数
