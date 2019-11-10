@@ -17,11 +17,9 @@
 
 pip install -r requirements.txt
 
-设置Elasticsearch并确保它在http：// localhost：9200上运行,linux只能非root用户运行
-
 
 #### 使用
-1.设置Elasticsearch并确保它在http：// localhost：9200上运行
+1.设置Elasticsearch并确保它在http：// localhost：9200上运行,linux只能非root用户运行，生产环境加nginx和uwsgi或者gunicorn
 
 2.在models.py文件中创建你的字段映射
 
