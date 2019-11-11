@@ -16,4 +16,7 @@ api.add_resource(SearchSuggest, '/api/suggest/<string:types>/<string:keyword>/<i
 
 from app.main.views import *
 if __name__ == '__main__':
-    app.run()
+    #app.run()
+    from gevent.pywsgi import WSGIServer
+    http_server = WSGIServer(('127.0.0.1', 5000), app)
+    http_server.serve_forever()
