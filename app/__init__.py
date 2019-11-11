@@ -1,3 +1,4 @@
+from gevent import monkey
 from flask import Flask
 from flask_wtf import csrf
 from flask_sqlalchemy import SQLAlchemy
@@ -8,6 +9,7 @@ pymysql.install_as_MySQLdb()
 db = SQLAlchemy()
 
 def create_app():
+    monkey.patch_all()
     app = Flask(__name__)
     app.config.from_object('app.config.Develop')
     db.init_app(app)
